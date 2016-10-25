@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>LocalStorage Lab</title>
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
 
 <style type="text/css">
 body {
@@ -66,6 +67,8 @@ fieldset .submit {
 
 </head>
 <body>
+	
+	
 
 	<H1>實作 HTML5 的 LocalStorage 功能</H1>
 	<p>輸入表單資料，不要按下「Send」送出，關閉瀏覽器，然後重新回到本頁，自動回復先前輸入的內容。</p>
@@ -91,7 +94,55 @@ fieldset .submit {
 	</form>
 
 <span id="test"></span>
+<script>
+		$(document).ready(function(){
+			
+		
+			$(".formFields").keyup(function(){
+				localStorage.setItem(this.name, this.value);
+			});
+			
+			$(window).load(function(){
+				if(localStorage["txtName"])
+				$("#txtName").val(localStorage["txtName"]);
+				if(localStorage["txtEmail"])
+				$("#txtEmail").val(localStorage["txtEmail"]);
+				if(localStorage["txtPhone"])
+				$("#txtPhone").val(localStorage["txtPhone"]);
+			});
+			
+			$("#btnSubmit").click(function(){
+				localStorage.clear();
+			})
+		
+		});
+		
+	
 
+		
+	// function doChange() {
+	// 	// document.getElementById("test").innerHTML += this.name + ":" + this.value + "<br>";
+	// 	localStorage.setItem(this.name, this.value);
+	// }
+	
+	// var name=document.getElementById("txtName").onkeyup = doChange;
+	// var email=document.getElementById("txtEmail").onkeyup = doChange;
+	// var phone=document.getElementById("txtPhone").onkeyup = doChange;
+	//OK
+	
+	// 	function readAndShow() {
+	// 	if (localStorage["txtName"])
+	// 		document.getElementById("txtName").value = localStorage["txtName"];
+	// 	if (localStorage["txtEmail"])
+	// 		document.getElementById("txtEmail").value = localStorage["txtEmail"];
+	// 	if (localStorage["txtPhone"])
+	// 		document.getElementById("txtPhone").value = localStorage["txtPhone"];
+	// }
+	
+	// window.onload = readAndShow;
+	
+	// 	document.forms[0].onsubmit = function () { localStorage.clear(); };
+	</script>
 
 </body>
 </html>
